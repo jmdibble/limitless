@@ -49,3 +49,11 @@ All text lives directly in the component files:
 - Google Maps: linked in Details via short URL
 - Instagram: @limitless_gym_mk
 - Facebook: /korecovery
+
+## Production Checklist
+Things to update when moving to the final domain:
+- [ ] Update `metadataBase` in `src/app/layout.tsx` (currently set to Vercel test URL)
+- [ ] Update `url` in JSON-LD structured data in `src/app/layout.tsx`
+- [ ] Verify OG image loads correctly on the new domain (test with https://developers.facebook.com/tools/debug/)
+- [ ] Verify geo coordinates in JSON-LD are accurate for the exact unit location
+- [ ] Set up custom domain on Vercel and configure DNS
