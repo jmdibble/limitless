@@ -54,8 +54,11 @@ export default function Lightbox({
         >
           {/* Close button */}
           <button
-            onClick={close}
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              close();
+            }}
+            className="absolute top-4 right-4 z-10 p-4 text-white/70 hover:text-white transition-colors"
             aria-label="Close"
           >
             <svg
@@ -102,7 +105,6 @@ export default function Lightbox({
           {/* Image + caption */}
           <div
             className="flex flex-col items-center max-w-[90vw] max-h-[90vh] w-full h-full"
-            onClick={(e) => e.stopPropagation()}
           >
             <div className="relative w-full h-full">
               <Image
