@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import FadeInUp from "./FadeInUp";
 
@@ -66,7 +68,7 @@ const features = [
     ),
   },
   {
-    title: "Music Loud, Work Hard",
+    title: "Loud Music, Hard Work",
     description:
       "The music's up and people come to train. But stick around — this gym is about community.",
     icon: (
@@ -92,14 +94,16 @@ export default function About() {
   return (
     <section id="about" className="bg-secondary/20 py-20 px-4 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase text-center mb-4">
-          What We&apos;re <span className="text-primary">About</span>
-        </h2>
-        <p className="text-tertiary text-center max-w-2xl mx-auto mb-12">
-          Limitless Gym MK is built for anyone who wants to better themselves.
-          No gimmicks, no distractions — just a proper environment to put in the
-          work, surrounded by people who do the same.
-        </p>
+        <FadeInUp>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase text-center mb-4">
+            What We&apos;re <span className="text-primary">About</span>
+          </h2>
+          <p className="text-tertiary text-center max-w-2xl mx-auto mb-12">
+            Limitless Gym MK is built for anyone who wants to better themselves.
+            No gimmicks, no distractions — just a proper environment to put in
+            the work, surrounded by people who do the same.
+          </p>
+        </FadeInUp>
 
         {/* Dumbbell rack image */}
         <div className="relative w-full h-64 md:h-80 mb-12 overflow-hidden">
