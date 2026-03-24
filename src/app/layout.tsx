@@ -31,16 +31,16 @@ export const metadata: Metadata = {
     "free weights gym",
   ],
   openGraph: {
-    title: "Limitless Gym MK | Weights Gym in Milton Keynes",
+    title: "Limitless Gym MK | Weights Gym near Milton Keynes",
     description:
-      "No machines. No nonsense. Just iron. Milton Keynes' premier weights gym.",
+      "No gimmicks. No excuses. Just iron. Weights and bodybuilding gym near Milton Keynes — plate-loaded machines, dumbbells up to 80kg, and a community built to train.",
     siteName: "Limitless Gym MK",
     images: [
       {
-        url: "/limitless_gym_mk_logo.png",
-        width: 1080,
-        height: 1080,
-        alt: "Limitless Gym MK Logo",
+        url: "/gym_floor.jpg",
+        width: 1536,
+        height: 2048,
+        alt: "Inside Limitless Gym MK — weights and bodybuilding gym",
       },
     ],
     locale: "en_GB",
@@ -48,9 +48,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Limitless Gym MK | Weights Gym in Milton Keynes",
-    description: "No machines. No nonsense. Just iron.",
-    images: ["/limitless_gym_mk_logo.png"],
+    title: "Limitless Gym MK | Weights Gym near Milton Keynes",
+    description:
+      "No gimmicks. No excuses. Just iron. Weights and bodybuilding gym near Milton Keynes.",
+    images: ["/gym_floor.jpg"],
   },
   robots: {
     index: true,
