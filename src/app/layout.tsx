@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     siteName: "Limitless Gym MK",
     images: [
       {
-        url: "/gym_floor.jpg",
-        width: 1536,
-        height: 2048,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "Inside Limitless Gym MK — weights and bodybuilding gym",
       },
     ],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Limitless Gym MK | Weights Gym near Milton Keynes",
     description:
       "No gimmicks. No excuses. Just iron. Weights and bodybuilding gym near Milton Keynes.",
-    images: ["/gym_floor.jpg"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
