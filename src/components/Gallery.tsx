@@ -30,7 +30,7 @@ const gridStyles = ["col-span-2 row-span-2", "", "", "col-span-2"];
 
 export default function Gallery() {
   return (
-    <section className="bg-neutral py-20 px-4">
+    <section id="gallery" className="bg-neutral py-20 px-4 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <Lightbox images={images}>
           {(openAt) => (
