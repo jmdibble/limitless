@@ -1,11 +1,12 @@
 # Limitless Gym MK - Website
 
-One-pager marketing website for Limitless Gym MK, a weights gym in Milton Keynes.
+One-pager marketing website for Limitless Gym MK, a weights and bodybuilding gym near Milton Keynes (Paulerspury, Northants).
 
 ## Tech Stack
 - Next.js (App Router) with TypeScript
 - Tailwind CSS v4 (config via `@theme inline` in globals.css)
-- Google Fonts: Oswald (headings), Inter (body)
+- Google Fonts: Oswald (headings), Archivo (body)
+- Vercel hosting with Speed Insights + Analytics
 
 ## Color Palette
 Defined in `src/app/globals.css` via CSS custom properties:
@@ -17,25 +18,34 @@ Defined in `src/app/globals.css` via CSS custom properties:
 
 ## Fonts
 - `font-heading` (Oswald) - All headings, nav links, buttons. Always uppercase with wide tracking.
-- `font-body` (Inter) - Body text, descriptions.
+- `font-body` (Archivo) - Body text, descriptions.
 
 ## Architecture
-- **Static one-pager** - all components are server components except Navbar (needs mobile menu state)
-- **5 section components** in `src/components/`: Navbar, Hero, About, Details, Footer
-- **SEO metadata** defined in `src/app/layout.tsx` using Next.js Metadata API
+- **Static one-pager** - most components are server components; client components: Navbar (mobile menu state), Gallery (lightbox), About (FadeInUp), OpenStatus (live open/closed)
+- **8 section components** in `src/components/`: Navbar, Hero, About, Gallery, Memberships, Details, Footer
+- **Utility components**: FadeInUp (scroll-triggered animation), OpenStatus (live open/closed indicator), Lightbox (fullscreen image viewer)
+- **SEO metadata** defined in `src/app/layout.tsx` using Next.js Metadata API + JSON-LD structured data (Gym schema)
 - **Smooth scroll** via CSS `scroll-behavior: smooth` + section IDs + `scroll-mt-20` offset for sticky nav
-- **No external dependencies** beyond what create-next-app provides
+- **Custom animation** `fade-in-up` defined via `@utility` in globals.css, triggered on scroll via IntersectionObserver in FadeInUp component
 
 ## Design Principles
 - Dark theme throughout, red accents
 - Sharp corners (no rounded) for industrial aesthetic
 - Oswald uppercase for all headings and interactive text
 - Keep components simple and flat — no unnecessary abstractions
-- All placeholder copy is co-located in component files for easy editing
+- Subtle scroll-triggered fade-in-up animations on key sections
 
 ## Editing Content
-All placeholder text (address, phone, hours, descriptions) lives directly in the component files:
+All text lives directly in the component files:
 - Hero tagline: `src/components/Hero.tsx`
 - About text & features: `src/components/About.tsx`
+- Gallery images & captions: `src/components/Gallery.tsx`
+- Membership options: `src/components/Memberships.tsx`
 - Hours & contact info: `src/components/Details.tsx`
 - Social media links: `src/components/Details.tsx`
+
+## External Links
+- Join Now (Clubwise signup): linked in Hero, Navbar, and Memberships
+- Google Maps: linked in Details via short URL
+- Instagram: @limitless_gym_mk
+- Facebook: /korecovery
