@@ -15,14 +15,14 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-neutral/95 backdrop-blur-sm border-b border-secondary">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 py-2 md:py-4 flex items-center justify-between">
         <a href="#hero">
           <Image
             src="/writing_no_bg.png"
             alt="Limitless Gym MK"
             width={80}
             height={80}
-            className="w-20 h-20 object-contain"
+            className="w-12 h-12 md:w-20 md:h-20 object-contain"
           />
         </a>
 
