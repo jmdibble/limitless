@@ -20,7 +20,7 @@ const features = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={1.5}
-          d="M3 12h1m3-4v8m0-8H5a1 1 0 00-1 1v6a1 1 0 001 1h2m0-8h2m0 0V7a1 1 0 011-1h2a1 1 0 011 1v10a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5m8 5V7m0 0h2a1 1 0 011 1v6a1 1 0 01-1 1h-2m0-8h-2m0 0v10m0-10V7m8 5h1"
+          d="M6.5 6.5v11M17.5 6.5v11M6.5 12h11M4 8v8a1 1 0 001 1h1.5V7H5a1 1 0 00-1 1zM2.5 9.5v5a.5.5 0 00.5.5h1V9H3a.5.5 0 00-.5.5zM20 8v8a1 1 0 01-1 1h-1.5V7H19a1 1 0 011 1zM21.5 9.5v5a.5.5 0 01-.5.5h-1V9h1a.5.5 0 01.5.5z"
         />
       </svg>
     ),
