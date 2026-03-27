@@ -114,7 +114,7 @@ export default function About() {
             priority
             className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-secondary/20 to-transparent" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -122,9 +122,9 @@ export default function About() {
             <FadeInUp
               key={f.title}
               delay={i * 150}
-              className="bg-neutral border border-secondary p-6 text-center hover:border-primary transition-colors"
+              className="bg-neutral-950/90 border-2 border-secondary border-t-primary rounded-md p-6 text-center"
             >
-              <div className="text-primary flex justify-center mb-4">
+              <div className="text-primary flex justify-center mb-4 drop-shadow-[0_0_4px_rgba(211,47,47,0.4)]">
                 {f.icon}
               </div>
               <h3 className="font-heading text-xl uppercase font-semibold mb-2">
