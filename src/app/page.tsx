@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
 import Memberships from "@/components/Memberships";
+import Testimonials from "@/components/Testimonials";
 import Details from "@/components/Details";
 import Footer from "@/components/Footer";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <About />
       <Gallery />
       <Memberships />
+      {/* <Testimonials /> */}
       <Details />
       <Footer />
     </main>
