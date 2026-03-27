@@ -36,7 +36,7 @@ export default function Gallery() {
         <Lightbox images={images}>
           {(openAt) => (
             <FadeInUp>
-              <div className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-4 h-[500px] md:h-[600px]">
+              <div className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-4 h-125 md:h-150">
                 {images.map((img, i) => (
                   <button
                     key={img.src}
@@ -49,7 +49,7 @@ export default function Gallery() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                       <p className="font-heading text-sm uppercase tracking-wider text-white">
                         {img.caption}
                       </p>

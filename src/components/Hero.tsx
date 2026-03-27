@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ParallaxLayer from "./ParallaxLayer";
 
 export default function Hero() {
   return (
@@ -6,17 +7,19 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center text-center scroll-mt-20 overflow-hidden"
     >
-      {/* Background image */}
-      <Image
-        src="/gym_floor.jpg"
-        alt=""
-        fill
-        priority
-        className="object-cover object-center grayscale"
-      />
+      {/* Background image with parallax */}
+      <ParallaxLayer className="absolute inset-0 will-change-transform">
+        <Image
+          src="/gym_floor.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover object-center grayscale scale-125"
+        />
+      </ParallaxLayer>
 
       {/* Dark overlay with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-neutral via-neutral/80 to-neutral/50" />
+      <div className="absolute inset-0 bg-linear-to-t from-neutral via-neutral/80 to-neutral/50" />
 
       {/* Content */}
       <div className="relative z-10 px-4">
