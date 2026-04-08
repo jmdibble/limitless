@@ -122,7 +122,7 @@ export default function About() {
             <FadeInUp
               key={f.title}
               delay={i * 150}
-              className="bg-neutral-950/90 border-2 border-secondary border-t-primary rounded-md p-6 text-center"
+              className="bg-neutral-950/90 border-b-2 border-b-secondary p-6 text-center"
             >
               <div className="text-primary flex justify-center mb-4 drop-shadow-[0_0_4px_rgba(211,47,47,0.4)]">
                 {f.icon}
