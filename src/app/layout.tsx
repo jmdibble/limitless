@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Oswald, Archivo } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -127,6 +128,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <CookieBanner />
         <SpeedInsights />
         <Analytics />
       </body>
