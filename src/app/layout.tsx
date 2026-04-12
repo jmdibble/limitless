@@ -18,7 +18,10 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://limitless-ivory.vercel.app"),
+  metadataBase: new URL("https://www.limitless-gym-mk.com"),
+  alternates: {
+    canonical: "https://www.limitless-gym-mk.com",
+  },
   title: "Limitless Gym MK | Weights Gym in Milton Keynes",
   description:
     "No gimmicks. No excuses. Just iron. Limitless Gym MK is a weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
@@ -79,7 +82,10 @@ export default function RootLayout({
               name: "Limitless Gym MK",
               description:
                 "Weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
-              url: "https://limitless-ivory.vercel.app",
+              "@id": "https://www.limitless-gym-mk.com/#gym",
+              url: "https://www.limitless-gym-mk.com",
+              image: "https://www.limitless-gym-mk.com/og-image.jpg",
+              priceRange: "££",
               telephone: "+447711240929",
               address: {
                 "@type": "PostalAddress",

@@ -51,9 +51,12 @@ All text lives directly in the component files:
 - Facebook: /korecovery
 
 ## Production Checklist
-Things to update when moving to the final domain:
-- [ ] Update `metadataBase` in `src/app/layout.tsx` (currently set to Vercel test URL)
-- [ ] Update `url` in JSON-LD structured data in `src/app/layout.tsx`
-- [ ] Verify OG image loads correctly on the new domain (test with https://developers.facebook.com/tools/debug/)
-- [ ] Verify geo coordinates in JSON-LD are accurate for the exact unit location
-- [ ] Set up custom domain on Vercel and configure DNS
+- [x] Update `metadataBase` in `src/app/layout.tsx`
+- [x] Update `url` in JSON-LD structured data in `src/app/layout.tsx`
+- [x] Set up custom domain on Vercel and configure DNS (limitless-gym-mk.com, apex redirects to www)
+- [x] Add `robots.ts`, `sitemap.ts`, `manifest.ts`
+- [x] Add canonical URL in metadata
+- [x] Verify OG image loads correctly on the new domain (test with https://developers.facebook.com/tools/debug/)
+- [x] Verify geo coordinates in JSON-LD are accurate for the exact unit location
+- [ ] Claim / update Google Business Profile (biggest local-SEO lever)
+- [ ] Audit alt text and heading outline across section components
