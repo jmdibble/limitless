@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -12,12 +13,18 @@ export default function Footer() {
           className="w-16 h-16 object-contain"
         />
 
-        <div className="text-tertiary text-sm text-center space-y-1">
+        <Link
+          href="/privacy"
+          className="font-heading uppercase tracking-wider hover:text-primary transition-colors"
+        >
+          Privacy Policy
+        </Link>
+        <div className="text-tertiary text-sm text-center flex flex-col items-center">
           <p>
             &copy; {new Date().getFullYear()} Limitless Gym MK Ltd. All rights
             reserved.
           </p>
-          <p>
+          <p className="mt-1">
             Limitless Gym MK Ltd · Registered in England &amp; Wales · Company
             No. 16947334
           </p>
