@@ -12,10 +12,16 @@ export default function Footer() {
           className="w-16 h-16 object-contain"
         />
 
-        <p className="text-tertiary text-sm">
-          &copy; {new Date().getFullYear()} Limitless Gym MK. All rights
-          reserved.
-        </p>
+        <div className="text-tertiary text-sm text-center space-y-1">
+          <p>
+            &copy; {new Date().getFullYear()} Limitless Gym MK Ltd. All rights
+            reserved.
+          </p>
+          <p>
+            Limitless Gym MK Ltd · Registered in England &amp; Wales · Company
+            No. 16947334
+          </p>
+        </div>
       </div>
     </footer>
   );
