@@ -1,19 +1,13 @@
 import Image from "next/image";
-
-const JOIN_URL =
-  "https://secure11.clubwise.com/limitlessgymmk/pos.asp?fbclid=IwY2xjawQvStpleHRuA2FlbQIxMABicmlkETFabDZCOHFnQnVmZG5QWEtXc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrXrmVyoR9kbdsdZU-nX5D9MZk5gGocvBgjXapuOMeeiS3dY4fybnKD0NGAc_aem_Rv4iQ-09GBduHmakpQyusA";
-
-function ArrowIcon() {
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>;
-}
+import Icon from "./Icon";
+import { JOIN_URL } from "@/lib/site";
 
 function FactIcon({ type }: { type: "hours" | "pass" | "member" | "place" }) {
   const paths = {
     hours: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
     pass: <><path d="M3 12V4h8l10 10-8 8z" /><circle cx="7.5" cy="7.5" r="1.5" /></>,
     member: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4m8-4v4" /></>,
-    place: <><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z" /><circle cx="12" cy="9" r="2.5" /></>,
-  };
+    place: <><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z" /><circle cx="12" cy="9" r="2.5" /></>,  };
   return <svg className="line-icon" viewBox="0 0 24 24" aria-hidden="true">{paths[type]}</svg>;
 }
 
@@ -32,12 +26,12 @@ export default function Hero() {
 
       <div className="container hero-content">
         <div className="hero-copy">
-          <div className="eyebrow"><span aria-hidden="true" />Weights and bodybuilding · Milton Keynes</div>
+          <div className="eyebrow"><span aria-hidden="true" />Weights · Cardio · Functional · Milton Keynes</div>
           <h1>No Gimmicks.<br />No Ego.<br /><span>Just Results.</span></h1>
-          <p>Premium weights and bodybuilding gym near Milton Keynes where everyone is welcome.</p>
+          <p>Premium weights, cardio and a functional gym near Milton Keynes. Come in and train your way.</p>
           <div className="hero-actions">
             <a className="button button-primary" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
-              Join now <ArrowIcon />
+              Join now <Icon name="arrow-right" />
             </a>
             <a className="button button-outline" href="#about">Learn More</a>
           </div>
@@ -46,7 +40,7 @@ export default function Hero() {
         <div className="hero-facts" aria-label="Gym information">
           <div className="hero-fact">
             <FactIcon type="hours" />
-            <div><span>Open 7 days</span><strong>Mon–Fri 7am–9pm</strong></div>
+            <div><span>Open 7 days</span><strong>Early till late</strong></div>
           </div>
           <div className="hero-fact">
             <FactIcon type="pass" />
@@ -54,11 +48,11 @@ export default function Hero() {
           </div>
           <div className="hero-fact">
             <FactIcon type="member" />
-            <div><span>Memberships</span><strong>From £30 a month</strong></div>
+            <div><span>Memberships</span><strong>From £40 a month</strong></div>
           </div>
           <div className="hero-fact">
             <FactIcon type="place" />
-            <div><span>Free parking</span><strong>Paulerspury, NN12 6LH</strong></div>
+            <div><span>Free parking</span><strong>Directly outside</strong></div>
           </div>
         </div>
       </div>

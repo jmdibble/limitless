@@ -3,6 +3,19 @@ import { Oswald, Kumbh_Sans } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import CookieBanner from "@/components/CookieBanner";
+import {
+  ADDRESS,
+  DAY_NAMES,
+  GEO,
+  HOURS,
+  PHONE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+  SOCIAL,
+  formatHourIso,
+} from "@/lib/site";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -18,35 +31,36 @@ const kumbhSans = Kumbh_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.limitless-gym-mk.com"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: "https://www.limitless-gym-mk.com",
+    canonical: SITE_URL,
   },
-  title: "Limitless Gym MK | Weights Gym in Milton Keynes",
-  description:
-    "No Gimmicks. No Ego. Just Results. Limitless Gym MK is a weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: [
     "gym Milton Keynes",
-    "weights gym MK",
-    "powerlifting gym",
-    "bodybuilding Milton Keynes",
+    "gym near Milton Keynes",
+    "weights gym",
+    "cardio gym",
+    "functional training",
+    "free weights gym",
+    "air conditioned gym",
     "Limitless Gym MK",
     "gym Paulerspury",
     "gym Towcester",
     "gym Northants",
-    "free weights gym",
   ],
   openGraph: {
-    title: "Limitless Gym MK | Weights Gym near Milton Keynes",
-    description:
-      "No Gimmicks. No Ego. Just Results. Weights and bodybuilding gym near Milton Keynes, with plate-loaded machines, dumbbells up to 80kg, and a community built to train.",
-    siteName: "Limitless Gym MK",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Inside Limitless Gym MK, weights and bodybuilding gym",
+        alt: "Limitless Gym MK logo over the weights floor",
       },
     ],
     locale: "en_GB",
@@ -54,15 +68,57 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Limitless Gym MK | Weights Gym near Milton Keynes",
-    description:
-      "No Gimmicks. No Ego. Just Results. Weights and bodybuilding gym near Milton Keynes.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Gym",
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  "@id": `${SITE_URL}/#gym`,
+  url: SITE_URL,
+  image: `${SITE_URL}/og-image.png`,
+  priceRange: "££",
+  telephone: PHONE.tel,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: ADDRESS.streetAddress,
+    addressLocality: ADDRESS.locality,
+    addressRegion: ADDRESS.region,
+    postalCode: ADDRESS.postalCode,
+    addressCountry: ADDRESS.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: GEO.latitude,
+    longitude: GEO.longitude,
+  },
+  openingHoursSpecification: HOURS.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days.map((d) => DAY_NAMES[d]),
+    opens: formatHourIso(h.open),
+    closes: formatHourIso(h.close),
+  })),
+  amenityFeature: [
+    "Air conditioning",
+    "Changing rooms",
+    "Lockers",
+    "Toilets",
+    "Free parking",
+  ].map((name) => ({
+    "@type": "LocationFeatureSpecification",
+    name,
+    value: true,
+  })),
+  sameAs: [SOCIAL.instagram, SOCIAL.facebook],
 };
 
 export default function RootLayout({
@@ -76,61 +132,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Gym",
-              name: "Limitless Gym MK",
-              description:
-                "Weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
-              "@id": "https://www.limitless-gym-mk.com/#gym",
-              url: "https://www.limitless-gym-mk.com",
-              image: "https://www.limitless-gym-mk.com/og-image.png",
-              priceRange: "££",
-              telephone: "+447711240929",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Unit 2, The Homestead, Watling Street",
-                addressLocality: "Paulerspury",
-                addressRegion: "Northants",
-                postalCode: "NN12 6LH",
-                addressCountry: "GB",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 52.1275,
-                longitude: -0.9786,
-              },
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                  ],
-                  opens: "07:00",
-                  closes: "21:00",
-                },
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: "Saturday",
-                  opens: "09:00",
-                  closes: "20:00",
-                },
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: "Sunday",
-                  opens: "09:00",
-                  closes: "17:00",
-                },
-              ],
-              sameAs: [
-                "https://www.instagram.com/limitless_gym_mk/",
-                "https://www.facebook.com/korecovery",
-              ],
-            }),
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
         {children}

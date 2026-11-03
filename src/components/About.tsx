@@ -7,7 +7,7 @@ const features = [
   {
     title: "Premium equipment",
     description:
-      "Barbells, dumbbells up to 80kg, machines for every body part. Everything you need, nothing you don't.",
+      "Barbells, dumbbells up to 80kg, machines for every body part. Cardio floor and functional area upstairs.",
     icon: <path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11" />,
   },
   {
@@ -31,7 +31,7 @@ const features = [
   {
     title: "Loud music, hard work",
     description:
-      "The music's up and people come to train. This gym is also about community.",
+      "The music's up and people come to train. This gym is about community and getting results.",
     icon: (
       <>
         <path d="M9 18V5l11-2v13" />
@@ -79,18 +79,17 @@ export default function About() {
             <Image
               className="about-photo-image"
               src="/new_weights_9.jpeg"
-              alt="Weights area with machines, benches and a dumbbell rack"
+              alt="Weights area"
               fill
               sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 48px), (max-width: 960px) 720px, 42vw"
             />
             <figcaption>Weights area</figcaption>
-            {/* <span classNamCe="photo-badge"><strong>80KG</strong><span>dumbbells on the rack</span></span> */}
           </figure>
           <figure className="about-photo-card">
             <Image
               className="about-photo-image"
               src="/new_cardio_4.jpeg"
-              alt="Upstairs cardio area with treadmills and other cardio machines"
+              alt="Cardio area"
               fill
               sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 48px), (max-width: 960px) 720px, 42vw"
             />

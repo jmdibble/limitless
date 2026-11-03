@@ -11,82 +11,82 @@ const galleries = [
     images: [
       {
         src: "/new_weights_9.jpeg",
-        alt: "Dumbbell rack and benches on the weights floor",
+        alt: "Dumbbell rack",
         caption: "Dumbbell rack",
         featured: true,
         bento: true,
       },
       {
         src: "/new_weights_5.jpeg",
-        alt: "Training floor with a power rack and plate-loaded machines",
-        caption: "Training floor",
+        alt: "Power rack and platform",
+        caption: "Power rack / platform",
         bento: true,
       },
       {
         src: "/new_weights_3.jpeg",
-        alt: "Plate-loaded machines on the weights floor",
-        caption: "Plate-loaded machines",
+        alt: "Weights floor",
+        caption: "Weights floor",
         bento: true,
       },
       {
         src: "/new_weights_1.jpeg",
-        alt: "Plate-loaded equipment on the weights floor",
+        alt: "Weights floor",
         caption: "Weights floor",
       },
       {
         src: "/new_weights_2.jpeg",
-        alt: "Strength training machines at Limitless Gym MK",
-        caption: "Strength equipment",
+        alt: "Weights floor",
+        caption: "Weights floor",
       },
       {
         src: "/new_weights_4.jpeg",
-        alt: "Training equipment on the downstairs weights floor",
-        caption: "Training floor",
+        alt: "Weights floor",
+        caption: "Weights floor",
       },
       {
         src: "/new_weights_6.jpeg",
-        alt: "Free weights and plate-loaded machines",
-        caption: "Free weights",
+        alt: "Weights floor",
+        caption: "Weights floor",
       },
       {
         src: "/new_weights_7.jpeg",
-        alt: "Downstairs gym floor at Limitless Gym MK",
-        caption: "Downstairs gym floor",
+        alt: "Smith machine",
+        caption: "Smith machine",
       },
       {
         src: "/new_weights_8.jpeg",
-        alt: "Equipment on the downstairs gym floor",
-        caption: "Gym equipment",
+        alt: "Weights floor",
+        caption: "Weights floor",
       },
     ],
   },
   {
     title: "Upstairs",
-    label: "Cardio area",
+    label: "Cardio & functional",
     images: [
       {
         src: "/new_cardio_4.jpeg",
-        alt: "Upstairs cardio area with treadmills, bikes and cross trainers",
+        alt: "Cardio floor",
         caption: "Cardio floor",
         featured: true,
         bento: true,
       },
       {
         src: "/new_cardio_3.jpeg",
-        alt: "Spin bikes in the upstairs cardio area",
+        alt: "Spin bikes",
         caption: "Spin bikes",
         bento: true,
       },
       {
-        src: "/new_cardio_2.jpeg",
-        alt: "Cardio equipment and benches upstairs",
-        caption: "More room to move",
+        src: "/new_functional_2.jpeg",
+        alt: "Functional area",
+        caption: "Functional area",
         bento: true,
       },
       {
-        src: "/new_cardio_1.jpeg",
-        alt: "Cardio equipment in the upstairs training area",
-        caption: "Upstairs cardio",
+        src: "/new_functional_1.jpeg",
+        alt: "Functional cable machine",
+        caption: "Functional cable machine",
       },
     ],
   },
@@ -96,24 +96,12 @@ export default function Gallery() {
   return (
     <section className="section gallery-section" id="gallery">
       <div className="container gallery-layout">
-        <FadeInUp className="gallery-heading">
-          <div className="gallery-title">
-            <div className="eyebrow">
-              <span aria-hidden="true" />
-              Gallery
-            </div>
-            <h2>Gallery</h2>
+        <FadeInUp className="gallery-title">
+          <div className="eyebrow">
+            <span aria-hidden="true" />
+            Gallery
           </div>
-          <div className="gallery-copy">
-            <p>
-              Downstairs is kitted out with plate-loaded machines for every body
-              part. Chest, back, shoulders, legs and arms.
-            </p>
-            <p>
-              Upstairs has a full cardio suite and functional training area,
-              including additional hex dumbbells and floor mats.
-            </p>
-          </div>
+          <h2>A Closer Look</h2>
         </FadeInUp>
 
         <div className="gallery-groups">

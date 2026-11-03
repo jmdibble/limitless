@@ -50,7 +50,7 @@ export default function Lightbox({
 
       {activeIndex !== null && createPortal(
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/95"
           onClick={close}
           role="dialog"
           aria-modal="true"

@@ -1,35 +1,50 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+
+const STORAGE_KEY = "cookie-consent";
+const listeners = new Set<() => void>();
+
+function subscribe(onChange: () => void) {
+  listeners.add(onChange);
+  window.addEventListener("storage", onChange); // other tabs
+  return () => {
+    listeners.delete(onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function getSnapshot() {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return "accepted"; // storage blocked: don't nag on every page
+  }
+}
 
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent");
-    if (!consent) {
-      setVisible(true);
-    }
-  }, []);
+  // Server snapshot says "accepted" so nothing renders until the client has checked storage.
+  const consent = useSyncExternalStore(subscribe, getSnapshot, () => "accepted");
 
   function accept() {
-    localStorage.setItem("cookie-consent", "accepted");
-    setVisible(false);
+    try {
+      localStorage.setItem(STORAGE_KEY, "accepted");
+    } catch {
+      // ignore: banner is dismissed below regardless
+    }
+    listeners.forEach((notify) => notify());
   }
 
-  if (!visible) return null;
+  if (consent) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-secondary bg-neutral/95 backdrop-blur-sm px-4 py-4 sm:px-6">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-neutral/95 px-4 py-4 backdrop-blur-sm sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 sm:flex-row sm:justify-between">
-        <p className="text-sm text-tertiary text-center sm:text-left">
+        <p className="text-center text-sm text-copy-muted sm:text-left">
           This website uses essential cookies to ensure it functions properly. No
           tracking or advertising cookies are used.
         </p>
-        <button
-          onClick={accept}
-          className="font-heading uppercase tracking-wider text-sm bg-primary hover:bg-primary-dark text-white px-6 py-2 transition-colors shrink-0 cursor-pointer"
-        >
+        <button type="button" onClick={accept} className="button button-primary shrink-0 cursor-pointer">
           Got it
         </button>
       </div>

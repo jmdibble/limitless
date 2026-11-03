@@ -1,3 +1,7 @@
+"use client";
+
+import { useId, useState } from "react";
+
 const faqs = [
   {
     q: "Do I need to book before visiting?",
@@ -13,7 +17,7 @@ const faqs = [
   },
   {
     q: "Can I try before I join?",
-    a: "Yes. Grab a day pass and see if the gym is right for you. No pressure.",
+    a: "Yes. Grab a day pass at the front desk and see if the gym is right for you. No pressure. No booking required.",
   },
   {
     q: "Is there parking?",
@@ -30,6 +34,10 @@ function PlusIcon() {
 }
 
 export default function FAQ() {
+  // One panel open at a time; null = all closed. First question starts open.
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const baseId = useId();
+
   return (
     <section className="section faq-section" id="faq">
       <div className="container faq-layout">
@@ -40,12 +48,34 @@ export default function FAQ() {
         </div>
 
         <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <details key={faq.q} className="faq-item" open={index === 0}>
-              <summary><span>{faq.q}</span><PlusIcon /></summary>
-              <p>{faq.a}</p>
-            </details>
-          ))}
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const questionId = `${baseId}-q${index}`;
+            const panelId = `${baseId}-a${index}`;
+            return (
+              <div key={faq.q} className={`faq-item${isOpen ? " is-open" : ""}`}>
+                <h3>
+                  <button
+                    type="button"
+                    className="faq-question"
+                    id={questionId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                  >
+                    <span>{faq.q}</span>
+                    <PlusIcon />
+                  </button>
+                </h3>
+                {/* Answers stay in the DOM (crawlable); visibility hides closed ones from tab/AT */}
+                <div className="faq-panel" id={panelId} role="region" aria-labelledby={questionId}>
+                  <div className="faq-panel-inner">
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

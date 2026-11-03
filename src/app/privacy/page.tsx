@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ADDRESS, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Limitless Gym MK",
   description:
     "How Limitless Gym MK Ltd collects, uses and protects personal data via this website.",
   alternates: {
-    canonical: "https://www.limitless-gym-mk.com/privacy",
+    canonical: `${SITE_URL}/privacy`,
   },
   robots: {
     index: true,
@@ -16,23 +17,35 @@ export const metadata: Metadata = {
   },
 };
 
-const lastUpdated = "13 April 2026";
+const lastUpdated = "3 November 2026";
+
+function Heading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-heading text-2xl font-semibold uppercase tracking-wide text-white sm:text-3xl">
+      {children}
+    </h2>
+  );
+}
 
 export default function PrivacyPage() {
   return (
     <main>
       <Navbar />
-      <section className="bg-neutral pt-32 pb-20 px-4">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="font-heading uppercase tracking-wider text-4xl sm:text-5xl text-white mb-4">
+      <section className="px-6 pb-24 pt-36 sm:pt-40">
+        <div className="mx-auto max-w-3xl">
+          <div className="eyebrow">
+            <span aria-hidden="true" />
+            Legal
+          </div>
+          <h1 className="mt-5 font-heading text-5xl font-bold uppercase leading-none tracking-tight text-white sm:text-6xl">
             Privacy Policy
           </h1>
-          <p className="text-tertiary text-sm mb-12">
+          <p className="mb-14 mt-5 text-sm text-tertiary">
             Last updated: {lastUpdated}
           </p>
 
-          <div className="space-y-10 text-white/90 leading-relaxed">
-            <section className="space-y-3">
+          <div className="space-y-12 text-base leading-relaxed text-copy-muted [&_strong]:font-semibold [&_strong]:text-white">
+            <section className="space-y-4">
               <p>
                 This privacy policy explains how Limitless Gym MK Ltd
                 (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) collects
@@ -48,27 +61,24 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                Who we are
-              </h2>
+            <section className="space-y-4">
+              <Heading>Who we are</Heading>
               <p>
                 Limitless Gym MK Ltd, a company registered in England and Wales
-                (company number 16947334). Our gym is located at Unit 2, The
-                Homestead, Watling Street, Paulerspury, Northants, NN12 6LH.
+                (company number 16947334). Our gym is located at{" "}
+                {ADDRESS.streetAddress}, {ADDRESS.locality}, {ADDRESS.region},{" "}
+                {ADDRESS.postalCode}.
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                What data we collect via this website
-              </h2>
+            <section className="space-y-4">
+              <Heading>What data we collect via this website</Heading>
               <p>
                 This website is a simple marketing page. We do not run contact
                 forms, accounts or payments on this site. The personal data
                 involved is limited to:
               </p>
-              <ul className="list-disc pl-6 space-y-2">
+              <ul className="list-disc space-y-2 pl-6 marker:text-primary-text">
                 <li>
                   <strong>Technical data</strong> automatically logged when your
                   browser connects to the site (IP address, device type,
@@ -81,18 +91,23 @@ export default function PrivacyPage() {
                   fingerprint or personally identify visitors.
                 </li>
                 <li>
+                  <strong>Map data</strong>{" "}
+                  when the embedded Google Map in the contact section loads.
+                  Your browser connects to Google, which receives your IP
+                  address and browser details (see &ldquo;Third parties&rdquo;
+                  below).
+                </li>
+                <li>
                   <strong>Contact details you choose to share</strong> if you
-                  email, call or message us via the links on this site (for
-                  example, Instagram or Facebook).
+                  call or message us via the links on this site (for example,
+                  WhatsApp, Instagram or Facebook).
                 </li>
               </ul>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                How we use your data
-              </h2>
-              <ul className="list-disc pl-6 space-y-2">
+            <section className="space-y-4">
+              <Heading>How we use your data</Heading>
+              <ul className="list-disc space-y-2 pl-6 marker:text-primary-text">
                 <li>To operate and secure the website.</li>
                 <li>
                   To understand how visitors find and use the site, so we can
@@ -103,35 +118,37 @@ export default function PrivacyPage() {
               <p>
                 Our lawful basis is our legitimate interest in running and
                 improving a simple marketing website. Where you contact us, we
-                take steps at your request before entering into a
-                contract.
+                take steps at your request before entering into a contract.
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                Cookies
-              </h2>
+            <section className="space-y-4">
+              <Heading>Cookies</Heading>
               <p>
-                This website uses only essential cookies required to make it
-                work. We do not use advertising or tracking cookies. Our
-                analytics provider (Vercel) is cookieless by design. You will
-                see a short notice about this when you first visit.
+                This website uses only essential cookies and similar storage
+                required to make it work (for example, remembering that you
+                dismissed the cookie notice). We do not use advertising or
+                tracking cookies, and our analytics provider (Vercel) is
+                cookieless by design. You will see a short notice about this
+                when you first visit.
+              </p>
+              <p>
+                The embedded Google Map is third-party content. Google may set
+                cookies or use similar technologies when it loads, under its own
+                policies, which we do not control.
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                Third parties
-              </h2>
+            <section className="space-y-4">
+              <Heading>Third parties</Heading>
               <p>
                 The website is hosted by Vercel Inc., which processes technical
-                data and analytics on our behalf. We also load fonts from
-                Google Fonts, which may involve your browser contacting
-                Google&rsquo;s servers. If you follow a link to our membership
-                signup (Clubwise), Instagram, Facebook or Google Maps, those
-                third parties will process your data under their own privacy
-                policies.
+                data and analytics on our behalf. The map in the contact
+                section is provided by Google Maps, so loading it sends your IP
+                address and browser details to Google. If you follow a link to
+                our membership signup (Clubwise), WhatsApp, Instagram, Facebook
+                or Google Maps directions, those third parties will process your
+                data under their own privacy policies.
               </p>
               <p>
                 We do not sell personal data, and we do not share it with third
@@ -139,10 +156,8 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                How long we keep data
-              </h2>
+            <section className="space-y-4">
+              <Heading>How long we keep data</Heading>
               <p>
                 Server logs and analytics data are retained only for as long as
                 our hosting and analytics providers retain them for their own
@@ -152,10 +167,8 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                Your rights
-              </h2>
+            <section className="space-y-4">
+              <Heading>Your rights</Heading>
               <p>
                 Under UK data protection law you have rights to access, correct,
                 delete, restrict and object to our processing of your personal
@@ -168,9 +181,9 @@ export default function PrivacyPage() {
                 (ICO) at{" "}
                 <a
                   href="https://ico.org.uk"
-                  className="text-primary hover:underline"
+                  className="text-primary-text hover:underline"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   ico.org.uk
                 </a>
@@ -178,25 +191,21 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                Contact
-              </h2>
+            <section className="space-y-4">
+              <Heading>Contact</Heading>
               <p>
                 Limitless Gym MK Ltd
                 <br />
-                Unit 2, The Homestead, Watling Street
+                {ADDRESS.streetAddress}
                 <br />
-                Paulerspury, Northants, NN12 6LH
+                {ADDRESS.locality}, {ADDRESS.region}, {ADDRESS.postalCode}
                 <br />
                 United Kingdom
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h2 className="font-heading uppercase tracking-wider text-2xl text-white">
-                Changes to this policy
-              </h2>
+            <section className="space-y-4">
+              <Heading>Changes to this policy</Heading>
               <p>
                 We may update this policy from time to time. The &ldquo;last
                 updated&rdquo; date at the top of the page will always show
@@ -204,11 +213,8 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <div className="pt-6">
-              <Link
-                href="/"
-                className="font-heading uppercase tracking-wider text-sm text-primary hover:underline"
-              >
+            <div className="pt-4">
+              <Link href="/" className="button button-outline">
                 ← Back to home
               </Link>
             </div>

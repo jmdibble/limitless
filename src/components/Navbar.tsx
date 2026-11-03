@@ -1,40 +1,53 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useSyncExternalStore } from "react";
+import { JOIN_URL, NAV_LINKS } from "@/lib/site";
 
-const JOIN_URL =
-  "https://secure11.clubwise.com/limitlessgymmk/pos.asp?fbclid=IwY2xjawQvStpleHRuA2FlbQIxMABicmlkETFabDZCOHFnQnVmZG5QWEtXc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrXrmVyoR9kbdsdZU-nX5D9MZk5gGocvBgjXapuOMeeiS3dY4fybnKD0NGAc_aem_Rv4iQ-09GBduHmakpQyusA";
+// True once the hero has scrolled up behind the header. Pages without a hero
+// (e.g. /privacy) count as scrolled, so the header is always the solid style there.
+function getPastHero() {
+  const hero = document.getElementById("hero");
+  if (!hero) return true;
+  const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 84;
+  return hero.getBoundingClientRect().bottom <= headerHeight;
+}
 
-const links = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
-];
+// The snapshot is a boolean, so React only re-renders when it flips, not on every scroll event.
+function subscribe(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  window.addEventListener("resize", onChange);
+  return () => {
+    window.removeEventListener("scroll", onChange);
+    window.removeEventListener("resize", onChange);
+  };
+}
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Server snapshot is false: static HTML always renders the transparent, over-hero style.
+  const pastHero = useSyncExternalStore(subscribe, getPastHero, () => false);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${pastHero ? " is-scrolled" : ""}`}>
       <div className="container nav-row">
-        <a className="nav-logo-link" href="#hero" aria-label="Limitless Gym MK home">
+        <Link className="nav-logo-link" href="/#hero" aria-label="Limitless Gym MK home">
           <Image
             className="nav-logo-image"
             src="/writing_no_bg.png"
             alt="Limitless Gym MK"
-            width={94}
+            width={93}
             height={66}
-            sizes="(max-width: 960px) 85px, 94px"
+            sizes="(max-width: 960px) 85px, 93px"
           />
-        </a>
+        </Link>
 
         <nav className="desktop-nav" aria-label="Main navigation">
-          {links.map((link) => (
-            <a key={link.href} href={link.href}>
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -60,10 +73,10 @@ export default function Navbar() {
 
       {mobileOpen && (
         <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
               {link.label}
-            </a>
+            </Link>
           ))}
           <a className="button button-primary" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
             Join now
