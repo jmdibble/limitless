@@ -70,7 +70,7 @@ export default function Details() {
               src="/new_entrance.jpeg"
               alt="Entrance to Limitless Gym MK"
               fill
-              sizes="(max-width: 960px) calc(100vw - 48px), 35vw"
+              sizes="(max-width: 1024px) calc(100vw - 48px), 35vw"
             />
             <figcaption>Find us in Paulerspury</figcaption>
           </figure>

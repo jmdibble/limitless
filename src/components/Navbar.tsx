@@ -39,7 +39,7 @@ export default function Navbar() {
             alt="Limitless Gym MK"
             width={93}
             height={66}
-            sizes="(max-width: 960px) 85px, 93px"
+            sizes="(max-width: 1024px) 85px, 93px"
           />
         </Link>
 

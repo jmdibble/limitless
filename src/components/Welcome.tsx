@@ -63,8 +63,8 @@ export default function Welcome() {
                 style={{ objectPosition: photo.position }}
                 sizes={
                   index === 0
-                    ? "(max-width: 560px) calc(100vw - 40px), (max-width: 960px) calc(100vw - 48px), 40vw"
-                    : "(max-width: 560px) calc((100vw - 50px) / 2), (max-width: 960px) calc((100vw - 60px) / 2), 20vw"
+                    ? "(max-width: 560px) calc(100vw - 40px), (max-width: 1024px) calc(100vw - 48px), 40vw"
+                    : "(max-width: 560px) calc((100vw - 50px) / 2), (max-width: 1024px) calc((100vw - 60px) / 2), 20vw"
                 }
               />
               <span className="welcome-caption">{photo.caption}</span>

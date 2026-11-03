@@ -130,8 +130,8 @@ export default function Gallery() {
                           quality={85}
                           sizes={
                             image.featured
-                              ? "(max-width: 560px) calc(100vw - 40px), (max-width: 960px) calc(100vw - 48px), 45vw"
-                              : "(max-width: 560px) calc((100vw - 52px) / 2), (max-width: 960px) calc((100vw - 64px) / 2), 21vw"
+                              ? "(max-width: 560px) calc(100vw - 40px), (max-width: 1024px) calc(100vw - 48px), 45vw"
+                              : "(max-width: 560px) calc((100vw - 52px) / 2), (max-width: 1024px) calc((100vw - 64px) / 2), 21vw"
                           }
                         />
                         <span className="gallery-bento-caption">{image.caption}</span>

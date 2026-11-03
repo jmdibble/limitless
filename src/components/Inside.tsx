@@ -80,7 +80,7 @@ export default function Inside() {
                   alt={zone.image.alt}
                   fill
                   style={{ objectPosition: zone.image.position }}
-                  sizes="(max-width: 960px) calc(100vw - 48px), 600px"
+                  sizes="(max-width: 1024px) calc(100vw - 48px), 600px"
                 />
               </div>
               <div className="inside-body">

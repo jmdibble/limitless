@@ -81,7 +81,7 @@ export default function About() {
               src="/new_weights_9.jpeg"
               alt="Weights area"
               fill
-              sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 48px), (max-width: 960px) 720px, 42vw"
+              sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 48px), (max-width: 1024px) 720px, 42vw"
             />
             <figcaption>Weights area</figcaption>
           </figure>
@@ -91,7 +91,7 @@ export default function About() {
               src="/new_cardio_4.jpeg"
               alt="Cardio area"
               fill
-              sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 48px), (max-width: 960px) 720px, 42vw"
+              sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 48px), (max-width: 1024px) 720px, 42vw"
             />
             <figcaption>Cardio area</figcaption>
           </figure>

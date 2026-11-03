@@ -1280,7 +1280,7 @@ html {
   color: #a1a1aa;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .container {
     width: min(100% - 48px, 720px);
   }
