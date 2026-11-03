@@ -15,7 +15,7 @@ const reviews = [
   },
   {
     name: "Dan T.",
-    text: "Dumbbells up to 80kg, machines for everything, and music that actually gets you going. No fancy nonsense — just a proper gym. Wouldn't train anywhere else.",
+    text: "Dumbbells up to 80kg, machines for everything, and music that actually gets you going. No fancy nonsense. Just a proper gym. Wouldn't train anywhere else.",
     rating: 5,
   },
 ];

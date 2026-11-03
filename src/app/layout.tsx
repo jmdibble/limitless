@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Oswald, Archivo } from "next/font/google";
+import { Oswald, Kumbh_Sans } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import CookieBanner from "@/components/CookieBanner";
@@ -11,10 +11,10 @@ const oswald = Oswald({
   weight: ["400", "500", "600", "700"],
 });
 
-const archivo = Archivo({
+const kumbhSans = Kumbh_Sans({
   subsets: ["latin"],
-  variable: "--font-archivo",
-  weight: ["400", "500", "600"],
+  variable: "--font-kumbh-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   title: "Limitless Gym MK | Weights Gym in Milton Keynes",
   description:
-    "No gimmicks. No excuses. Just iron. Limitless Gym MK is a weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
+    "No Gimmicks. No Ego. Just Results. Limitless Gym MK is a weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
   keywords: [
     "gym Milton Keynes",
     "weights gym MK",
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Limitless Gym MK | Weights Gym near Milton Keynes",
     description:
-      "No gimmicks. No excuses. Just iron. Weights and bodybuilding gym near Milton Keynes — plate-loaded machines, dumbbells up to 80kg, and a community built to train.",
+      "No Gimmicks. No Ego. Just Results. Weights and bodybuilding gym near Milton Keynes, with plate-loaded machines, dumbbells up to 80kg, and a community built to train.",
     siteName: "Limitless Gym MK",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Inside Limitless Gym MK — weights and bodybuilding gym",
+        alt: "Inside Limitless Gym MK, weights and bodybuilding gym",
       },
     ],
     locale: "en_GB",
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Limitless Gym MK | Weights Gym near Milton Keynes",
     description:
-      "No gimmicks. No excuses. Just iron. Weights and bodybuilding gym near Milton Keynes.",
-    images: ["/og-image.jpg"],
+      "No Gimmicks. No Ego. Just Results. Weights and bodybuilding gym near Milton Keynes.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -71,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${archivo.variable}`}>
+    <html lang="en" className={`${oswald.variable} ${kumbhSans.variable}`}>
       <body className="bg-neutral text-white font-body antialiased">
         <script
           type="application/ld+json"
@@ -84,7 +84,7 @@ export default function RootLayout({
                 "Weights gym near Milton Keynes for serious lifters. Dumbbells up to 80kg, protein shakes on site, and a community built to train.",
               "@id": "https://www.limitless-gym-mk.com/#gym",
               url: "https://www.limitless-gym-mk.com",
-              image: "https://www.limitless-gym-mk.com/og-image.jpg",
+              image: "https://www.limitless-gym-mk.com/og-image.png",
               priceRange: "££",
               telephone: "+447711240929",
               address: {

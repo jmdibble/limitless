@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 
 export default function Lightbox({
@@ -47,10 +48,13 @@ export default function Lightbox({
     <>
       {children((index: number) => setActiveIndex(index))}
 
-      {activeIndex !== null && (
+      {activeIndex !== null && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
           onClick={close}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Photo gallery, image ${activeIndex + 1} of ${images.length}`}
         >
           {/* Close button */}
           <button
@@ -105,6 +109,7 @@ export default function Lightbox({
           {/* Image + caption */}
           <div
             className="flex flex-col items-center max-w-[90vw] max-h-[90vh] w-full h-full"
+            onClick={(event) => event.stopPropagation()}
           >
             <div className="relative w-full h-full">
               <Image
@@ -113,6 +118,7 @@ export default function Lightbox({
                 fill
                 className="object-contain"
                 sizes="90vw"
+                quality={90}
               />
             </div>
             {images[activeIndex].caption && (
@@ -121,6 +127,10 @@ export default function Lightbox({
               </p>
             )}
           </div>
+
+          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-semibold tracking-[0.12em] text-white/70">
+            {activeIndex + 1} / {images.length}
+          </p>
 
           {/* Next */}
           <button
@@ -146,7 +156,8 @@ export default function Lightbox({
               />
             </svg>
           </button>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

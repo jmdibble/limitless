@@ -39,7 +39,7 @@ export default function PrivacyPage() {
                 and uses personal data through this website
                 (www.limitless-gym-mk.com). It does not cover the personal data
                 we process as a gym operator in connection with memberships,
-                CCTV or on-site activities — that is handled separately at the
+                CCTV or on-site activities. That is handled separately at the
                 gym.
               </p>
               <p>
@@ -102,8 +102,8 @@ export default function PrivacyPage() {
               </ul>
               <p>
                 Our lawful basis is our legitimate interest in running and
-                improving a simple marketing website, and — where you contact
-                us — taking steps at your request before entering into a
+                improving a simple marketing website. Where you contact us, we
+                take steps at your request before entering into a
                 contract.
               </p>
             </section>
