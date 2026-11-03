@@ -1,35 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+import { DAY_NAMES, HOURS } from "@/lib/site";
 
-const HOURS: Record<number, [number, number]> = {
-  0: [9, 17], // Sunday
-  1: [7, 21], // Monday
-  2: [7, 21],
-  3: [7, 21],
-  4: [7, 21],
-  5: [7, 21],
-  6: [9, 20], // Saturday
-};
+const londonTime = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/London",
+  weekday: "long",
+  hour: "numeric",
+  hourCycle: "h23",
+});
 
 function getIsOpen() {
-  const now = new Date(
-    new Date().toLocaleString("en-US", { timeZone: "Europe/London" })
-  );
-  const day = now.getDay();
-  const hour = now.getHours();
-  const [open, close] = HOURS[day];
-  return hour >= open && hour < close;
+  const parts = londonTime.formatToParts(new Date());
+  const weekday = parts.find((p) => p.type === "weekday")?.value;
+  const hour = Number(parts.find((p) => p.type === "hour")?.value);
+  const day = DAY_NAMES.findIndex((name) => name === weekday);
+  const today = HOURS.find((h) => h.days.includes(day));
+  return !!today && hour >= today.open && hour < today.close;
+}
+
+// Re-evaluate every minute. The snapshot is a boolean, so React only re-renders on change.
+function subscribe(onChange: () => void) {
+  const interval = setInterval(onChange, 60_000);
+  return () => clearInterval(interval);
 }
 
 export default function OpenStatus() {
-  const [isOpen, setIsOpen] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setIsOpen(getIsOpen());
-    const interval = setInterval(() => setIsOpen(getIsOpen()), 60_000);
-    return () => clearInterval(interval);
-  }, []);
+  // Server snapshot is null so the static HTML renders nothing, avoiding a hydration mismatch.
+  const isOpen = useSyncExternalStore(subscribe, getIsOpen, () => null);
 
   if (isOpen === null) return null;
 

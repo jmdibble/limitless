@@ -1,15 +1,16 @@
 import type { MetadataRoute } from "next";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Limitless Gym MK",
-    short_name: "Limitless Gym MK",
-    description:
-      "Weights and bodybuilding gym near Milton Keynes. Everyone is welcome. Whether you're a seasoned lifter or just starting out, our gym provides a supportive and motivating environment to help you achieve your fitness goals.",
+    name: SITE_NAME,
+    short_name: SITE_NAME,
+    description: SITE_DESCRIPTION,
     start_url: "/",
     display: "standalone",
-    background_color: "#0A0A0A",
-    theme_color: "#D32F2F",
+    // Match --page-bg and --brand-red in globals.css
+    background_color: "#0b0b0c",
+    theme_color: "#d91f2b",
     icons: [
       {
         src: "/icon.png",

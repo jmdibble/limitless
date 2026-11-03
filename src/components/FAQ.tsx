@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import FadeInUp from "./FadeInUp";
+import { useId, useState } from "react";
 
 const faqs = [
   {
@@ -14,11 +13,11 @@ const faqs = [
   },
   {
     q: "Is there a contract on memberships?",
-    a: "Monthly memberships roll on a month-to-month basis — no lock-in, cancel anytime. Annual memberships are at a discounted rate with a 12-month commitment.",
+    a: "Monthly memberships roll on a month-to-month basis, with no lock-in. Cancel anytime. Annual memberships are at a discounted rate with a 12-month commitment.",
   },
   {
     q: "Can I try before I join?",
-    a: "Yes — grab a day pass and see if the gym is right for you. No pressure.",
+    a: "Yes. Grab a day pass at the front desk and see if the gym is right for you. No pressure. No booking required.",
   },
   {
     q: "Is there parking?",
@@ -30,58 +29,53 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a, delay }: { q: string; a: string; delay: number }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <FadeInUp delay={delay}>
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full text-left border-b border-secondary py-5 group"
-      >
-        <div className="flex items-center justify-between gap-4">
-          <h3 className="font-heading uppercase tracking-wider text-lg text-white group-hover:text-primary transition-colors">
-            {q}
-          </h3>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-5 w-5 text-primary shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-        </div>
-        <div
-          className={`overflow-hidden transition-all duration-300 ${open ? "max-h-40 mt-3" : "max-h-0"}`}
-        >
-          <p className="text-tertiary text-sm leading-relaxed">{a}</p>
-        </div>
-      </button>
-    </FadeInUp>
-  );
+function PlusIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>;
 }
 
 export default function FAQ() {
-  return (
-    <section className="py-16 px-4">
-      <div className="max-w-3xl mx-auto">
-        <FadeInUp>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase text-center mb-12">
-            Common <span className="text-primary">Questions</span>
-          </h2>
-        </FadeInUp>
+  // One panel open at a time; null = all closed. First question starts open.
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const baseId = useId();
 
-        <div>
-          {faqs.map((faq, i) => (
-            <FAQItem key={faq.q} q={faq.q} a={faq.a} delay={i * 80} />
-          ))}
+  return (
+    <section className="section faq-section" id="faq">
+      <div className="container faq-layout">
+        <div className="faq-intro">
+          <div className="eyebrow"><span aria-hidden="true" />FAQ</div>
+          <h2>Common Questions</h2>
+          <a className="button button-outline" href="#contact">Get in Touch</a>
+        </div>
+
+        <div className="faq-list">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const questionId = `${baseId}-q${index}`;
+            const panelId = `${baseId}-a${index}`;
+            return (
+              <div key={faq.q} className={`faq-item${isOpen ? " is-open" : ""}`}>
+                <h3>
+                  <button
+                    type="button"
+                    className="faq-question"
+                    id={questionId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                  >
+                    <span>{faq.q}</span>
+                    <PlusIcon />
+                  </button>
+                </h3>
+                {/* Answers stay in the DOM (crawlable); visibility hides closed ones from tab/AT */}
+                <div className="faq-panel" id={panelId} role="region" aria-labelledby={questionId}>
+                  <div className="faq-panel-inner">
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

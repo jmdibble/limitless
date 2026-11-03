@@ -1,44 +1,35 @@
+import Icon from "./Icon";
+import { JOIN_URL } from "@/lib/site";
+
 const options = [
-  { name: "Day Passes", from: "£10" },
-  { name: "Monthly Memberships", from: "£45 per month" },
-  { name: "Annual Memberships", from: "£30 per month" },
+  { name: "Day Passes", price: "£10", suffix: "", action: "Buy at front desk", href: "#contact", tone: "subtle" },
+  { name: "Monthly Memberships", price: "£45", suffix: "per month", action: "Join Now", href: JOIN_URL, tone: "light" },
+  { name: "Annual Memberships", price: "£40", suffix: "per month", action: "Join Now", href: JOIN_URL, tone: "primary", featured: true },
 ];
 
 export default function Memberships() {
   return (
-    <section className="bg-secondary/20 py-16 px-4">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase mb-8">
-          Train <span className="text-primary">Your Way</span>
-        </h2>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-          {options.map((opt) => (
-            <div key={opt.name} className="text-center">
-              <span className="font-heading uppercase tracking-wider text-primary text-lg md:text-xl">
-                {opt.name}
-              </span>
-              <p className="text-tertiary text-sm mt-1">from {opt.from}</p>
-            </div>
-          ))}
+    <section className="section pricing-section" id="pricing">
+      <div className="container pricing-layout">
+        <div className="section-heading centered-heading">
+          <div className="eyebrow eyebrow-centered"><span aria-hidden="true" />Pricing<span aria-hidden="true" /></div>
+          <h2>Train Your Way</h2>
+          <p>Get in touch or pop in to find out more about our membership options.</p>
         </div>
-        <p className="text-tertiary mt-8">
-          Get in touch or pop in to find out more about our membership options.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-          <a
-            href="https://secure11.clubwise.com/limitlessgymmk/pos.asp?fbclid=IwY2xjawQvStpleHRuA2FlbQIxMABicmlkETFabDZCOHFnQnVmZG5QWEtXc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrXrmVyoR9kbdsdZU-nX5D9MZk5gGocvBgjXapuOMeeiS3dY4fybnKD0NGAc_aem_Rv4iQ-09GBduHmakpQyusA"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-primary hover:bg-primary-dark text-white font-heading uppercase tracking-wider px-8 py-3 text-lg transition-colors"
-          >
-            Join Now
-          </a>
-          <a
-            href="#contact"
-            className="border-2 border-tertiary hover:border-primary text-tertiary hover:text-primary font-heading uppercase tracking-wider px-8 py-3 text-lg transition-colors"
-          >
-            Get in Touch
-          </a>
+
+        <div className="pricing-grid">
+          {options.map((option) => (
+            <article className={`price-card ${option.featured ? "price-card-featured" : ""}`} key={option.name}>
+              {option.featured && <span className="value-tag">Best value</span>}
+              <div className="price-card-top">
+                <h3>{option.name}</h3>
+                <p className="price-line"><span>from</span><strong>{option.price}</strong>{option.suffix && <span>{option.suffix}</span>}</p>
+              </div>
+              <a className={`button ${option.tone === "primary" ? "button-primary" : option.tone === "light" ? "button-light" : "button-outline"}`} href={option.href} target={option.href.startsWith("http") ? "_blank" : undefined} rel={option.href.startsWith("http") ? "noopener noreferrer" : undefined}>
+                {option.action}{option.tone === "primary" && <Icon name="arrow-right" />}
+              </a>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -1,119 +1,88 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useState, useSyncExternalStore } from "react";
+import { JOIN_URL, NAV_LINKS } from "@/lib/site";
 
-const NAV_LINKS = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
-];
+// True once the hero has scrolled up behind the header. Pages without a hero
+// (e.g. /privacy) count as scrolled, so the header is always the solid style there.
+function getPastHero() {
+  const hero = document.getElementById("hero");
+  if (!hero) return true;
+  const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 84;
+  return hero.getBoundingClientRect().bottom <= headerHeight;
+}
+
+// The snapshot is a boolean, so React only re-renders when it flips, not on every scroll event.
+function subscribe(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  window.addEventListener("resize", onChange);
+  return () => {
+    window.removeEventListener("scroll", onChange);
+    window.removeEventListener("resize", onChange);
+  };
+}
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Server snapshot is false: static HTML always renders the transparent, over-hero style.
+  const pastHero = useSyncExternalStore(subscribe, getPastHero, () => false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-neutral/95 backdrop-blur-sm border-b border-secondary">
-      <div className="max-w-6xl mx-auto px-4 py-2 md:py-4 flex items-center justify-between">
-        <a href="#hero">
+    <header className={`site-header${pastHero ? " is-scrolled" : ""}`}>
+      <div className="container nav-row">
+        <Link className="nav-logo-link" href="/#hero" aria-label="Limitless Gym MK home">
           <Image
+            className="nav-logo-image"
             src="/writing_no_bg.png"
             alt="Limitless Gym MK"
-            width={80}
-            height={80}
-            className="w-12 h-12 md:w-20 md:h-20 object-contain"
+            width={93}
+            height={66}
+            sizes="(max-width: 960px) 85px, 93px"
           />
+        </Link>
+
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <a className="button button-primary nav-join" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
+          Join now
         </a>
 
-        <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="font-heading uppercase text-sm tracking-widest text-tertiary hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a
-              href="https://secure11.clubwise.com/limitlessgymmk/pos.asp?fbclid=IwY2xjawQvStpleHRuA2FlbQIxMABicmlkETFabDZCOHFnQnVmZG5QWEtXc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrXrmVyoR9kbdsdZU-nX5D9MZk5gGocvBgjXapuOMeeiS3dY4fybnKD0NGAc_aem_Rv4iQ-09GBduHmakpQyusA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary hover:bg-primary-dark text-white font-heading uppercase text-sm tracking-widest px-5 py-2 transition-colors"
-            >
-              Join Now
-            </a>
-          </li>
-        </ul>
-
         <button
-          className="md:hidden text-white p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          className="menu-toggle"
+          type="button"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMobileOpen((open) => !open)}
         >
           {mobileOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
           )}
         </button>
       </div>
 
       {mobileOpen && (
-        <ul className="md:hidden bg-neutral border-t border-secondary px-4 pb-4">
+        <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
           {NAV_LINKS.map((link) => (
-            <li key={link.href} className="py-2">
-              <a
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="font-heading uppercase tracking-widest text-tertiary hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
+            <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
+              {link.label}
+            </Link>
           ))}
-          <li className="pt-2">
-            <a
-              href="https://secure11.clubwise.com/limitlessgymmk/pos.asp?fbclid=IwY2xjawQvStpleHRuA2FlbQIxMABicmlkETFabDZCOHFnQnVmZG5QWEtXc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrXrmVyoR9kbdsdZU-nX5D9MZk5gGocvBgjXapuOMeeiS3dY4fybnKD0NGAc_aem_Rv4iQ-09GBduHmakpQyusA"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileOpen(false)}
-              className="inline-block bg-primary hover:bg-primary-dark text-white font-heading uppercase tracking-widest px-5 py-2 transition-colors"
-            >
-              Join Now
-            </a>
-          </li>
-        </ul>
+          <a className="button button-primary" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
+            Join now
+          </a>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 }
